@@ -1,0 +1,59 @@
+/* eslint-disable prettier/prettier */
+import React, {useState} from 'react';
+import {View,  StyleSheet, ScrollView, Text} from 'react-native';
+import CustomInput from '../../components/CustomInput';
+import CustomButton from '../../components/CustomButton';
+import {useNavigation } from '@react-navigation/core';
+import {useForm} from 'react-hook-form';
+
+const ForgotPasswordScreen = () => {
+  const {control, handleSubmit} = useForm();
+  const navigation = useNavigation();
+  const onSendPressed = (data) => {
+    console.warn(data);
+    navigation.navigate('NewPassword');
+  };
+  const onSignInPressed = () => {
+    navigation.navigate('SignIn');
+  };
+  return (
+    <ScrollView>
+    <View style={styles.root}>
+    <Text style={styles.title}>Reset your Password</Text>
+
+      <CustomInput 
+      name = "username"
+      control = {control}
+      placeholder="Username" 
+      rules = {{
+        required: 'Username is required'
+      }}
+      />
+      <CustomButton text="Send" onPress={handleSubmit(onSendPressed)}/>
+      <CustomButton text="Back to Sign In" onPress={onSignInPressed} type="TERTIARY" />
+    </View>
+    </ScrollView>
+  );
+};
+
+const styles = StyleSheet.create({
+  root: {
+    alignItems: 'center',
+    padding: 20,
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#021c30',
+    margin: 10,
+  },
+  text: {
+    color: 'gray',
+    marginVertical: 10,
+  },
+  link: {
+    color: '#093F31'
+  },
+});
+
+export default ForgotPasswordScreen;

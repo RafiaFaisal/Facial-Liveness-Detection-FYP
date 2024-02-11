@@ -19,7 +19,7 @@ const CustomInput = ({
           <View 
           style={[
             styles.container, 
-            {borderColor: error ? 'red' : '#b2c8c5'},
+            {borderColor: error ? 'red' : '#b2c8c6'},
             ]}>
           <TextInput
             value={value}
